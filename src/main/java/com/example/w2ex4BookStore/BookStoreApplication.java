@@ -20,7 +20,7 @@ public class BookStoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner studentDemo(BookRepository repository) {
+	public CommandLineRunner bookInit(BookRepository repository) {
 		return (args) -> {
 			log.info("save a couple of books");
 			repository.save(new Book("Martin1","Rowlings","2005","PQL-156",14.9));
