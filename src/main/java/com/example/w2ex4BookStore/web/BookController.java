@@ -27,8 +27,14 @@ public class BookController {
 	@Autowired
 	private CategoryRepository catRepository;
 	
+	// Show login page
+    @RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }	
+	
 	//Show all books
-	@RequestMapping("/index")
+	@RequestMapping("/booklist")
 	public String greeting(Model model) {
 		model.addAttribute("booklist",repository.findAll());
 		return "booklist";
@@ -58,14 +64,14 @@ public class BookController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Book book){
         repository.save(book);
-        return "redirect:index";
+        return "redirect:booklist";
     }
 	
 	//Delete book
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
     	repository.deleteById(bookId);
-        return "redirect:../index";
+        return "redirect:../booklist";
     } 
 	
 	//Edit a book
